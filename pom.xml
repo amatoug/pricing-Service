@@ -8,6 +8,10 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<spring-core-version>5.1.9.RELEASE</spring-core-version>
+		<version.logback>1.2.3</version.logback>
+		<version.slf4j>1.7.21</version.slf4j>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -17,5 +21,47 @@
 			<scope>test</scope>
 		</dependency>
 
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework</groupId> -->
+<!-- 			<artifactId>spring-beans</artifactId> -->
+<!-- 			<version>${spring-core-version}</version> -->
+<!-- 		</dependency> -->
+
+		<!-- For JavaConfig -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-core-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-core-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-core-version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Logger -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${version.logback}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${version.slf4j}</version>
+		</dependency>
 	</dependencies>
 </project>

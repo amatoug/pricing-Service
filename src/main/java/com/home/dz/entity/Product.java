@@ -13,7 +13,7 @@ public  class Product {
 	Integer unitQuantity;
 	Integer quantity;
 	UnitType unitType;
-	Double netWeightInGrams;
+	OptionalDouble netWeightInGrams;
 	Map<String, Object> propMap;
 
 	public void add2propMap(String key, Object value) {
@@ -28,7 +28,7 @@ public  class Product {
 		this.unitQuantity = unitQuantity;
 		this.quantity = quantity;
 		this.unitType = unitType;
-		this.netWeightInGrams = netWeightInGrams.getAsDouble();
+		this.netWeightInGrams = netWeightInGrams;
 		propMap = new HashMap<>();
 	}
 
