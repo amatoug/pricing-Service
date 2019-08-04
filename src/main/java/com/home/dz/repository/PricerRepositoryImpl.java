@@ -14,8 +14,8 @@ public class PricerRepositoryImpl implements PricerRepository {
 	@Override
 	public Map<String, Product> getCataloguePrice() {
 		Product mango1 = new Product("1", 2.50, 1, 3, UnitType.EACH, OptionalDouble.of(215.0));
-		Product mango2 = new Product("2", 5.0, 3, 5, UnitType.THREE, OptionalDouble.of(645.0));
-		Product grappe = new Product("3", 2.10, 1, 1, UnitType.KILOGRAM, OptionalDouble.of(1500.0));
+		Product mango2 = new Product("1", 5.0, 3, 5, UnitType.THREE, OptionalDouble.of(645.0));
+		Product grappe = new Product("2", 2.10, 1, 1, UnitType.KILOGRAM, OptionalDouble.of(1500.0));
 		Map<String, Product> store = new HashMap<String, Product>();
 		store.put("mango1", mango1);
 		store.put("mango2", mango2);

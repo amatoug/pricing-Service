@@ -32,25 +32,29 @@ public class MainPricerTest {
 
 	}
 
+	@Test
 	public void testPricerServiceSimplePrice() throws Exception {
-		Double price = pricerService.getPriceOf(store.get("mango1"));
+		Product mango1 = store.get("mango1");
+		Double price = pricerService.getPriceOf(mango1.getBarcode(),UnitType.EACH).getAsDouble();
 		assertEquals("must be a simple price:  price per unit * 3", (Double) 7.50, (Double) price);
 	}
 
 	@Test
 	public void testPricerServiceComplexPrice_UnitQuantityThree() throws Exception {
-		Double price = pricerService.getPriceOf(store.get("mango2"));
+		Product mango2 = store.get("mango2");
+		Double price = pricerService.getPriceOf(mango2.getBarcode(),UnitType.THREE).getAsDouble();
 		assertEquals(
 				"must be a complex price : price for three mangos plus the price per unit * 2",
-				(Double) 3.15, (Double) price);
+				(Double) 10.0, (Double) price);
 	}
 
 	@Test
 	public void testPricerServiceComplexPrice_UnitQuantityKilogram() throws Exception {
-		Double price = pricerService.getPriceOf(store.get("grappe"));
+		Product grappe = store.get("grappe");
+		Double price = pricerService.getPriceOf(grappe.getBarcode(),UnitType.KILOGRAM).getAsDouble();
 		assertEquals(
 				"must be a complex price : price per unit * net weight / 1000 ",
-				(Double) 10.0, (Double) price);
+				(Double) 3.15, (Double) price);
 	}
 
 }
