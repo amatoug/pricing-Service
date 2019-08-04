@@ -2,7 +2,6 @@ package com.home.dz.entity;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.OptionalDouble;
 
 import com.home.dz.enums.UnitType;
@@ -30,6 +29,55 @@ public  class Product {
 		this.unitType = unitType;
 		this.netWeightInGrams = netWeightInGrams;
 		propMap = new HashMap<>();
+	}
+
+	
+	public String getBarcode() {
+		return barcode;
+	}
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+
+	public Double getPricePerUnit() {
+		return pricePerUnit;
+	}
+
+	public void setPricePerUnit(Double pricePerUnit) {
+		this.pricePerUnit = pricePerUnit;
+	}
+
+	public Integer getUnitQuantity() {
+		return unitQuantity;
+	}
+
+	public void setUnitQuantity(Integer unitQuantity) {
+		this.unitQuantity = unitQuantity;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+	public UnitType getUnitType() {
+		return unitType;
+	}
+
+	public void setUnitType(UnitType unitType) {
+		this.unitType = unitType;
+	}
+
+	public OptionalDouble getNetWeightInGrams() {
+		return netWeightInGrams;
+	}
+
+	public void setNetWeightInGrams(OptionalDouble netWeightInGrams) {
+		this.netWeightInGrams = netWeightInGrams;
 	}
 
 	@Override
