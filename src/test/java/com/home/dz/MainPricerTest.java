@@ -32,7 +32,6 @@ public class MainPricerTest {
 
 	}
 
-	@Test
 	public void testPricerServiceSimplePrice() throws Exception {
 		Double price = pricerService.getPriceOf(store.get("mango1"));
 		assertEquals("must be a simple price:  price per unit * 3", (Double) 7.50, (Double) price);
@@ -41,14 +40,17 @@ public class MainPricerTest {
 	@Test
 	public void testPricerServiceComplexPrice_UnitQuantityThree() throws Exception {
 		Double price = pricerService.getPriceOf(store.get("mango2"));
-		assertEquals("must be a complex price : price for three mangos plus the price per unit * 2", (Double) 3.15,
-				(Double) price);
+		assertEquals(
+				"must be a complex price : price for three mangos plus the price per unit * 2",
+				(Double) 3.15, (Double) price);
 	}
 
 	@Test
 	public void testPricerServiceComplexPrice_UnitQuantityKilogram() throws Exception {
 		Double price = pricerService.getPriceOf(store.get("grappe"));
-		assertEquals("must be a complex price : price per unit * net weight / 1000 ", (Double) 10.0, (Double) price);
+		assertEquals(
+				"must be a complex price : price per unit * net weight / 1000 ",
+				(Double) 10.0, (Double) price);
 	}
 
 }
