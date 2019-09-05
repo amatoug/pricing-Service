@@ -50,7 +50,7 @@ public class MainPricerTest {
 	public void testPricerServiceComplexPrice_UnitQuantityThree2() throws Exception {
 		Product kiwi = store.get("kiwi");
 		Double price = pricerService.getPriceOf(kiwi.getBarcode(), UnitType.THREE).getAsDouble();
-		assertEquals("must be a complex price : price for three mangos * 2 plus the price per unit * 1", (Double) 5.19,
+		assertEquals("must be a complex price : price for three kiwi * 2 plus the price per unit * 1", (Double) 5.19,
 				(Double) price);
 	}
 
