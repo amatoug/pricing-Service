@@ -6,7 +6,7 @@ import java.util.OptionalDouble;
 
 import com.home.dz.enums.UnitType;
 
-public  class Product {
+public class Product {
 	String barcode;
 	Double pricePerUnit;
 	Integer unitQuantity;
@@ -31,7 +31,6 @@ public  class Product {
 		propMap = new HashMap<>();
 	}
 
-	
 	public String getBarcode() {
 		return barcode;
 	}

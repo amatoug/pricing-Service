@@ -19,42 +19,45 @@ public class PricerServiceImpl implements PricerService {
 	private Map<String, Product> store = null;
 
 	@Override
-	public OptionalDouble getPriceOf(String barCode,UnitType unitType) {
+	public OptionalDouble getPriceOf(String barCode, UnitType unitType) {
 		loadStore();
-		switch (unitType)
-	    {
-		case EACH:return getSimplePrice(barCode);
-		case THREE:return getComplexPriceByPackOfThree(barCode);
-		case KILOGRAM:return getComplexPriceByWeight(barCode);
+		switch (unitType) {
+		case EACH:
+			return getSimplePrice(barCode);
+		case THREE:
+			return getComplexPriceByPackOfThree(barCode);
+		case KILOGRAM:
+			return getComplexPriceByWeight(barCode);
 
-		default: return OptionalDouble.empty();
-	    }
+		default:
+			return OptionalDouble.empty();
+		}
 	}
 
 	private OptionalDouble getComplexPriceByWeight(String barCode) {
 		Product product = store.entrySet().stream()
-				 .filter(s -> barCode.equals(s.getValue().getBarcode()) && UnitType.KILOGRAM.equals(s.getValue().getUnitType()))
-				 .map(map -> map.getValue())
-				 .findFirst().get();
+				.filter(s -> barCode.equals(s.getValue().getBarcode())
+						&& UnitType.KILOGRAM.equals(s.getValue().getUnitType()))
+				.map(map -> map.getValue()).findFirst().get();
 		// price per unit * net weight / 1000
-		Double price =product.getPricePerUnit()*product.getNetWeightInGrams().getAsDouble()/1000; 
+		Double price = product.getPricePerUnit() * product.getNetWeightInGrams().getAsDouble() / 1000;
 		return OptionalDouble.of(price);
 	}
 
 	private OptionalDouble getSimplePrice(String barCode) {
 		Product product = store.entrySet().stream()
-				 .filter(s -> barCode.equals(s.getValue().getBarcode()) && UnitType.EACH.equals(s.getValue().getUnitType()))
-				 .map(map -> map.getValue())
-				 .findFirst().get();
-		Double price = product.getPricePerUnit()*product.getQuantity();
+				.filter(s -> barCode.equals(s.getValue().getBarcode())
+						&& UnitType.EACH.equals(s.getValue().getUnitType()))
+				.map(map -> map.getValue()).findFirst().get();
+		Double price = product.getPricePerUnit() * product.getQuantity();
 		return OptionalDouble.of(price);
 	}
 
 	private OptionalDouble getComplexPriceByPackOfThree(String barCode) {
 		Product productWithDiscountPrice = store.entrySet().stream()
-				 .filter(s -> barCode.equals(s.getValue().getBarcode()) && UnitType.THREE.equals(s.getValue().getUnitType()))
-				 .map(map -> map.getValue())
-				 .findFirst().get();
+				.filter(s -> barCode.equals(s.getValue().getBarcode())
+						&& UnitType.THREE.equals(s.getValue().getUnitType()))
+				.map(map -> map.getValue()).findFirst().get();
 
 		Integer quantity = productWithDiscountPrice.getQuantity();
 		double price = 0.0;
@@ -62,14 +65,15 @@ public class PricerServiceImpl implements PricerService {
 			int discountNumber = quantity / productWithDiscountPrice.getUnitQuantity();
 			int noDiscountNumber = quantity % productWithDiscountPrice.getUnitQuantity();
 			Product productWithNormalPrice = store.entrySet().stream()
-					 .filter(s -> barCode.equals(s.getValue().getBarcode()) && UnitType.EACH.equals(s.getValue().getUnitType()))
-					 .map(map -> map.getValue())
-					 .findFirst().get();
+					.filter(s -> barCode.equals(s.getValue().getBarcode())
+							&& UnitType.EACH.equals(s.getValue().getUnitType()))
+					.map(map -> map.getValue()).findFirst().get();
 
-			price = price + (productWithDiscountPrice.getPricePerUnit()*discountNumber)+(productWithNormalPrice.getPricePerUnit()*noDiscountNumber);
+			price = price + (productWithDiscountPrice.getPricePerUnit() * discountNumber)
+					+ (productWithNormalPrice.getPricePerUnit() * noDiscountNumber);
 
 		}
-		return  OptionalDouble.of(price);
+		return OptionalDouble.of(price);
 	}
 
 	@Override

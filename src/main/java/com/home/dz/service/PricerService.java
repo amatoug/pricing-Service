@@ -7,7 +7,7 @@ import com.home.dz.entity.Product;
 import com.home.dz.enums.UnitType;
 
 public interface PricerService {
-	public OptionalDouble getPriceOf(String barCode,UnitType unitType);
+	public OptionalDouble getPriceOf(String barCode, UnitType unitType);
 
 	public Map<String, Product> getCatalogPrices();
 

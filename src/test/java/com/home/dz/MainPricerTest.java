@@ -1,8 +1,8 @@
 package com.home.dz;
 
-import java.util.HashMap;
+import static org.junit.Assert.assertEquals;
+
 import java.util.Map;
-import java.util.OptionalDouble;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,6 @@ import com.home.dz.config.ServiceConfigTest;
 import com.home.dz.entity.Product;
 import com.home.dz.enums.UnitType;
 import com.home.dz.service.PricerServiceImpl;
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ServiceConfigTest.class)
@@ -35,26 +34,23 @@ public class MainPricerTest {
 	@Test
 	public void testPricerServiceSimplePrice() throws Exception {
 		Product mango1 = store.get("mango1");
-		Double price = pricerService.getPriceOf(mango1.getBarcode(),UnitType.EACH).getAsDouble();
+		Double price = pricerService.getPriceOf(mango1.getBarcode(), UnitType.EACH).getAsDouble();
 		assertEquals("must be a simple price:  price per unit * 3", (Double) 7.50, (Double) price);
 	}
 
 	@Test
 	public void testPricerServiceComplexPrice_UnitQuantityThree() throws Exception {
 		Product mango2 = store.get("mango2");
-		Double price = pricerService.getPriceOf(mango2.getBarcode(),UnitType.THREE).getAsDouble();
-		assertEquals(
-				"must be a complex price : price for three mangos plus the price per unit * 2",
-				(Double) 10.0, (Double) price);
+		Double price = pricerService.getPriceOf(mango2.getBarcode(), UnitType.THREE).getAsDouble();
+		assertEquals("must be a complex price : price for three mangos plus the price per unit * 2", (Double) 10.0,
+				(Double) price);
 	}
 
 	@Test
 	public void testPricerServiceComplexPrice_UnitQuantityKilogram() throws Exception {
 		Product grappe = store.get("grappe");
-		Double price = pricerService.getPriceOf(grappe.getBarcode(),UnitType.KILOGRAM).getAsDouble();
-		assertEquals(
-				"must be a complex price : price per unit * net weight / 1000 ",
-				(Double) 3.15, (Double) price);
+		Double price = pricerService.getPriceOf(grappe.getBarcode(), UnitType.KILOGRAM).getAsDouble();
+		assertEquals("must be a complex price : price per unit * net weight / 1000 ", (Double) 3.15, (Double) price);
 	}
 
 }

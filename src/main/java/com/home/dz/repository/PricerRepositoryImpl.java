@@ -1,4 +1,5 @@
 package com.home.dz.repository;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.OptionalDouble;
@@ -7,10 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import com.home.dz.entity.Product;
 import com.home.dz.enums.UnitType;
- 
+
 @Repository
 public class PricerRepositoryImpl implements PricerRepository {
- 
+
 	@Override
 	public Map<String, Product> getCataloguePrice() {
 		Product mango1 = new Product("1", 2.50, 1, 3, UnitType.EACH, OptionalDouble.of(215.0));
