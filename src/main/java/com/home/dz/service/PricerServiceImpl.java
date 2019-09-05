@@ -10,6 +10,10 @@ import com.home.dz.entity.Product;
 import com.home.dz.enums.UnitType;
 import com.home.dz.repository.PricerRepository;
 
+/**
+ * @author amatoug
+ *La couche services qui implemente les regles metiers
+ */
 @Service
 public class PricerServiceImpl implements PricerService {
 
@@ -34,6 +38,11 @@ public class PricerServiceImpl implements PricerService {
 		}
 	}
 
+	/**
+	 * l'unité de vente est le poids , exemple par 1 kg , par 300g...etc
+	 * @param barCode
+	 * @return
+	 */
 	private OptionalDouble getComplexPriceByWeight(String barCode) {
 		Product product = store.entrySet().stream()
 				.filter(s -> barCode.equals(s.getValue().getBarcode())
@@ -44,6 +53,11 @@ public class PricerServiceImpl implements PricerService {
 		return OptionalDouble.of(price);
 	}
 
+	/**
+	 * l'unité de vente est la piece exemple  le prix d'une mangue , d'un pamelo...
+	 * @param barCode
+	 * @return
+	 */
 	private OptionalDouble getSimplePrice(String barCode) {
 		Product product = store.entrySet().stream()
 				.filter(s -> barCode.equals(s.getValue().getBarcode())
@@ -53,6 +67,11 @@ public class PricerServiceImpl implements PricerService {
 		return OptionalDouble.of(price);
 	}
 
+	/**
+	 * l'unité de vente et 3 pieces , exemple le prix de  3 kixi, le prix de 5 mangues ..etc
+	 * @param barCode
+	 * @return
+	 */
 	private OptionalDouble getComplexPriceByPackOfThree(String barCode) {
 		Product productWithDiscountPrice = store.entrySet().stream()
 				.filter(s -> barCode.equals(s.getValue().getBarcode())
@@ -81,6 +100,9 @@ public class PricerServiceImpl implements PricerService {
 		return pricerDAO.getCataloguePrice();
 	}
 
+	/**charger les produits dans le cache
+	 * @return
+	 */
 	public synchronized Map<String, Product> loadStore() {
 		if (store == null) {
 			store = getCatalogPrices();

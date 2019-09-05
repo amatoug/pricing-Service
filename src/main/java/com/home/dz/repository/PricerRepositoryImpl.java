@@ -9,6 +9,10 @@ import org.springframework.stereotype.Repository;
 import com.home.dz.entity.Product;
 import com.home.dz.enums.UnitType;
 
+/**
+ * @author amatoug
+ * la classe Dao
+ */
 @Repository
 public class PricerRepositoryImpl implements PricerRepository {
 
